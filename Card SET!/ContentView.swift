@@ -12,10 +12,6 @@ struct ContentView: View {
     @ObservedObject var viewModel : SetViewModel
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
             Button("Game Deck Generation") {
                 viewModel.generateDeck()
             }
@@ -24,12 +20,7 @@ struct ContentView: View {
                     Button(action: {
                         viewModel.selectCard(card)
                     }){
-                        HStack{
-                            Image("\(card.shape.rawValue)\(card.shading.rawValue)\(card.numberOfShapes.rawValue)\(card.color)")
-                                .saturation(card.isSelected ? 0.5 : 1)
-                                .contrast(card.isSelected ? 0.5 : 1)
-                                .opacity(card.matched ? 0 : 1)
-                        }
+                        SetCard(cardInfo: card)
                     }
                 }
             }
@@ -46,6 +37,29 @@ struct ContentView: View {
     }
 }
 
+struct SetCard: View {
+    let cardInfo : SetGameModel.Card
+    var body: some View {
+        ZStack{
+            let base = RoundedRectangle(cornerRadius: 12).foregroundStyle(Color.cyan)
+            
+            Group {
+                base
+                switch cardInfo.shape {
+                        case .diamond:
+                    CustomShape.Diamond(customColor: cardInfo.getColor(), customStyle: cardInfo.shading, customAmount: cardInfo.numberOfShapes.rawValue).padding(20)
+                        case .oval:
+                            CustomShape.Ellipses(customColor: cardInfo.getColor(), customStyle: cardInfo.shading, customAmount: cardInfo.numberOfShapes.rawValue).padding(20)
+                        case .squiggle:
+                            CustomShape.Squiggle(customColor: cardInfo.getColor(), customStyle: cardInfo.shading, customAmount: cardInfo.numberOfShapes.rawValue).padding(20)
+                }
+            }
+        }.padding()
+        .saturation(cardInfo.isSelected ? 0.5 : 1)
+            .contrast(cardInfo.isSelected ? 0.5 : 1)
+            .opacity(cardInfo.matched ? 0 : 1)
+    }
+}
 #Preview {
     ContentView(viewModel: SetViewModel())
 }

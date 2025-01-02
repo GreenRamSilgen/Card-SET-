@@ -7,26 +7,6 @@
 
 import SwiftUI
 
-struct ShapeTesting: View {
-    var body: some View {
-        HStack{
-            CustomShape.Ellipses(customColor: .red, customStyle: .open, customAmount: 1)
-            CustomShape.Ellipses(customColor: .blue, customStyle: .striped, customAmount: 1)
-            CustomShape.Ellipses(customColor: .green, customStyle: .solid, customAmount: 1)
-        }
-        HStack{
-            CustomShape.Squiggle(customColor: .red, customStyle: .open, customAmount: 1)
-            CustomShape.Squiggle(customColor: .red, customStyle: .solid, customAmount: 1)
-            CustomShape.Squiggle(customColor: .red, customStyle: .striped, customAmount: 1)
-        }
-        HStack{
-            CustomShape.Diamond(customColor: .red, customStyle: .open, customAmount: 1)
-            CustomShape.Diamond(customColor: .red, customStyle: .solid, customAmount: 1)
-            CustomShape.Diamond(customColor: .red, customStyle: .striped, customAmount: 1)
-        }
-    }
-}
-
 struct CustomShape {
     struct Ellipses: View {
         let customColor: Color
@@ -54,7 +34,6 @@ struct CustomShape {
                 Stripes(stripeWidth: 1, stripeHeight: 1)
                         .stroke(.red, lineWidth: 5)
                         .clipShape(Ellipse())
-        //                .frame(width: ellipseWidth, height: ellipseHeight)
             }
         }
 
@@ -193,14 +172,12 @@ struct CustomShape {
                 var counter = 0
                 let xPosJumpAmt = Int(rect.maxX)/10
                 for yPosition in stride(from: Int(rect.maxY/2), to: 0, by: -Int(rect.maxY/10)) {
-                    print("ypos = \(yPosition) calc = \(xPosJumpAmt*counter)")
                     path.move(to: CGPoint(x: (xPosJumpAmt*counter), y: yPosition))
                     path.addLine(to: CGPoint(x: Int(rect.maxX)-(xPosJumpAmt*counter), y: yPosition))
                     counter += 1
                 }
                 counter = 0
                 for yPosition in stride(from: Int(rect.maxY/2), to: Int(rect.maxY), by: Int(rect.maxY/10)) {
-                    print("ypos = \(yPosition) calc = \(xPosJumpAmt*counter)")
                     path.move(to: CGPoint(x: (xPosJumpAmt*counter), y: yPosition))
                     path.addLine(to: CGPoint(x: Int(rect.maxX)-(xPosJumpAmt*counter), y: yPosition))
                     counter += 1
@@ -210,14 +187,4 @@ struct CustomShape {
             }
         }
     }
-}
-
-
-
-
-
-
-
-#Preview {
-    ShapeTesting()
 }
