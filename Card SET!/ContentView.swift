@@ -33,6 +33,7 @@ struct ContentView: View {
                     }
                 }
             }
+            
             Button("Deal 3 More Cards") {
 //                setGameModel.dealThreeMoreCards()
             }
