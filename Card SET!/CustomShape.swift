@@ -14,15 +14,17 @@ struct CustomShape {
         let customAmount: Int
         
         var body: some View {
-            ForEach(0..<customAmount, id: \.self) { _ in
-                if customStyle == .striped {
-                    EllipseShapeStriped(color: customColor, ellipseWidth: 100, ellipseHeight: 50).aspectRatio(3/5, contentMode: .fit)
-                }
-                else if customStyle == .open {
-                    Ellipse().stroke(customColor, lineWidth: 5).aspectRatio(3/5, contentMode: .fit)
-                }
-                else {
-                    Ellipse().fill(customColor).aspectRatio(3/5, contentMode: .fit)
+            HStack{
+                ForEach(0..<customAmount, id: \.self) { _ in
+                    if customStyle == .striped {
+                        EllipseShapeStriped(color: customColor, ellipseWidth: 100, ellipseHeight: 50).aspectRatio(3/5, contentMode: .fit)
+                    }
+                    else if customStyle == .open {
+                        Ellipse().stroke(customColor, lineWidth: 5).aspectRatio(3/5, contentMode: .fit)
+                    }
+                    else {
+                        Ellipse().fill(customColor).aspectRatio(3/5, contentMode: .fit)
+                    }
                 }
             }
         }
@@ -65,15 +67,17 @@ struct CustomShape {
         let customAmount: Int
         
         var body: some View {
-            ForEach(0..<customAmount, id: \.self) { _ in
-                if customStyle == .striped {
-                    SquiggleShapeStriped().stroke(lineWidth: 5).foregroundStyle(customColor).aspectRatio(3/5, contentMode: .fit)
-                }
-                else if customStyle == .open {
-                    SquiggleShape().stroke(customColor, lineWidth: 5).aspectRatio(3/5, contentMode: .fit)
-                }
-                else {
-                    SquiggleShape().fill(customColor).aspectRatio(3/5, contentMode: .fit)
+            HStack{
+                ForEach(0..<customAmount, id: \.self) { _ in
+                    if customStyle == .striped {
+                        SquiggleShapeStriped().stroke(lineWidth: 5).foregroundStyle(customColor).aspectRatio(3/5, contentMode: .fit)
+                    }
+                    else if customStyle == .open {
+                        SquiggleShape().stroke(customColor, lineWidth: 5).aspectRatio(3/5, contentMode: .fit)
+                    }
+                    else {
+                        SquiggleShape().fill(customColor).aspectRatio(3/5, contentMode: .fit)
+                    }
                 }
             }
         }
@@ -132,15 +136,18 @@ struct CustomShape {
         let customStyle: SetGameModel.Card.Shading
         let customAmount: Int
         var body: some View {
-            ForEach(0..<customAmount, id: \.self) { _ in
-                if customStyle == .striped {
-                    DiamondShapeStriped().stroke(lineWidth: 5).foregroundStyle(customColor).aspectRatio(3/5, contentMode: .fit)
-                }
-                else if customStyle == .open {
-                    DiamondShape().stroke(customColor, lineWidth: 5).aspectRatio(3/5, contentMode: .fit)
-                }
-                else {
-                    DiamondShape().fill(customColor).aspectRatio(3/5, contentMode: .fit)
+            HStack{
+                ForEach(0..<customAmount, id: \.self) { _ in
+                    if customStyle == .striped {
+                        DiamondShapeStriped().stroke(lineWidth: 5).foregroundStyle(customColor).aspectRatio(3/5, contentMode: .fit)
+                    }
+                    else if customStyle == .open {
+                        DiamondShape().stroke(customColor, lineWidth: 5).aspectRatio(3/5, contentMode: .fit)
+                    }
+                    else {
+                        DiamondShape().fill(customColor).aspectRatio(3/5, contentMode: .fit)
+                    }
+                    
                 }
             }
         }

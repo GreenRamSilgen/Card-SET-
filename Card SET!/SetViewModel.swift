@@ -14,7 +14,11 @@ class SetViewModel : ObservableObject {
     @Published private var setGameModel : SetGameModel = createSetGame()
     
     var currentDeck : [SetGameModel.Card] {
-        setGameModel.deck
+        setGameModel.cardsInPlay
+    }
+    
+    var checkIfGameIsOver : Bool {
+        setGameModel.gameOver
     }
     
     func generateDeck() {
@@ -27,5 +31,18 @@ class SetViewModel : ObservableObject {
     
     func shuffle() {
         setGameModel.shuffle()
+    }
+    
+    func drawThreeCards() {
+        guard checkIfGameIsOver == false else {return}
+        setGameModel.drawCardFromDeck()
+        setGameModel.drawCardFromDeck()
+        setGameModel.drawCardFromDeck()
+        setGameModel.isGameOver()
+    }
+    
+    
+    func getSetFoundPoints() -> Int {
+        setGameModel.setFoundCount
     }
 }
